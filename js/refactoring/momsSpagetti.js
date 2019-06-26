@@ -112,3 +112,39 @@ function momsSpagetti(lyrics) {
 }
 
 // REFACTORED VERSION HERE //
+
+const intro = () => {
+  return new Promise((resolve, reject) => {
+    resolve(console.log(lyrics.intro));
+  })
+}
+
+const chorus = (order) => {
+  return new Promise((resolve, reject) => {
+    resolve(console.log(lyrics.choruses[order].chorus))
+  })
+}
+
+const refrain = () => {
+  return new Promise((resolve, reject) => {
+    resolve(console.log(lyrics.refrain));
+  });
+}
+
+const ending = () => {
+  return new Promise((resolve, reject) => {
+    resolve(console.log(lyrics.ending));
+  });
+}
+
+intro()
+  .then(chorus(0))
+    .then(refrain())
+    .then(refrain())
+  .then(chorus(1))
+    .then(refrain())
+    .then(refrain())
+  .then(chorus(2))
+    .then(refrain())
+    .then(refrain())
+  .then(ending);
