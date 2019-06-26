@@ -114,37 +114,48 @@ function momsSpagetti(lyrics) {
 // REFACTORED VERSION HERE //
 
 const intro = () => {
-  return new Promise((resolve, reject) => {
-    resolve(console.log(lyrics.intro));
-  })
+    return new Promise((resolve, reject) => {
+        resolve(console.log(lyrics.intro));
+    })
 }
 
 const chorus = (order) => {
-  return new Promise((resolve, reject) => {
-    resolve(console.log(lyrics.choruses[order].chorus))
-  })
+    return new Promise((resolve, reject) => {
+        resolve(console.log(lyrics.choruses[order].chorus))
+    })
 }
 
 const refrain = () => {
-  return new Promise((resolve, reject) => {
-    resolve(console.log(lyrics.refrain));
-  });
+    return new Promise((resolve, reject) => {
+        resolve(console.log(lyrics.refrain));
+    });
 }
 
 const ending = () => {
-  return new Promise((resolve, reject) => {
-    resolve(console.log(lyrics.ending));
-  });
+    return new Promise((resolve, reject) => {
+        resolve(console.log(lyrics.ending));
+    });
 }
 
 intro()
-  .then(chorus(0))
-    .then(refrain())
-    .then(refrain())
-  .then(chorus(1))
-    .then(refrain())
-    .then(refrain())
-  .then(chorus(2))
-    .then(refrain())
-    .then(refrain())
-  .then(ending);
+    .then(chorus(0))
+        .then(refrain())
+        .then(refrain())
+    .then(chorus(1))
+        .then(refrain())
+        .then(refrain())
+    .then(chorus(2))
+        .then(refrain())
+        .then(refrain())
+    .then(ending);
+
+// Refactored the code with ES6 convention and to be promise based. I decided to create a function for each unique song structure property, 
+// such as a function for intro, then a single function for the chorus (which is repeated 3 times), another function for refrain(it is 
+// repeated multiple times as well), and lastly one for the ending. I encapsulated each function with a specific song section that 
+// can be reused and applied to other songs. 
+
+// The way the functions are displayed makes it easy to read and follow the code. I created the chaining to mimic the song structure.
+// My style choice for this excerice was to create the least amount of functions that can be recalled many times but still be clear to read. 
+// The naming is based on the song parts. With my refactoring, it prints out each section independently following the order it specified. 
+// I decided to display the full promise syntax, with `resolve and reject` to follow the convention. There are multiple ways to refactor with 
+// javascript promise but I found this way to be the cleanest.
